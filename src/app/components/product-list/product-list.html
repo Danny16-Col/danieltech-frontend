@@ -1,0 +1,34 @@
+<app-product-form></app-product-form>
+
+<section class="product-list-container">
+  <h1>Lista de productos</h1>
+
+  @if (loading) {
+    <p class="status-text">Cargando...</p>
+  }
+
+  @if (error) {
+    <p class="error-text">{{ error }}</p>
+  }
+
+  @if (!loading && product.length === 0 && !error) {
+    <p class="status-text">No hay productos disponibles en este momento.</p>
+  }
+
+  <div class="product-grid">
+    @for (item of product; track item._id) {
+      <div class="product-card">
+        <img [src]="item.imageUrl" alt="{{ item.name }}" />
+
+        <h2>{{ item.name }}</h2>
+        <p class="price">${{ item.price }}</p>
+
+        <div class="meta">
+          <span>{{ item.category }}</span>
+          <span>Stock: {{ item.stock }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+

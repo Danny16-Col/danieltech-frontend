@@ -1,0 +1,55 @@
+<section class="product-container">
+  <div class="product-card">
+
+    <header class="product-header">
+      <h1>Registrar producto</h1>
+      <p>Ingresa los datos para crear un nuevo producto</p>
+    </header>
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" formControlName="name" placeholder="Laptop gamer">
+      </div>
+
+      <div class="form-group">
+        <label>Precio</label>
+        <input type="number" formControlName="price">
+      </div>
+
+      <div class="form-group">
+        <label>Categoría</label>
+        <select formControlName="category">
+          <option value="premium">Premium</option>
+          <option value="mid">Media</option>
+          <option value="low">Baja</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Stock</label>
+        <input type="number" formControlName="stock">
+      </div>
+
+      <div class="form-group">
+        <label>Descripción</label>
+        <textarea rows="3" formControlName="description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Imagen (URL)</label>
+        <input type="text" formControlName="imageUrl" placeholder="https://...">
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Creando producto...' : 'Crear producto' }}
+      </button>
+
+    </form>
+
+    <div *ngIf="error" class="alert-error">{{ error }}</div>
+    <div *ngIf="message" class="alert-correct">{{ message }}</div>
+
+  </div>
+</section>
