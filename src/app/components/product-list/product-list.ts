@@ -18,6 +18,9 @@ export class ProductList implements OnInit {
 
   ngOnInit(): void {
     this.getServices();
+    this.productService.refreshProduct.subscribe(() => {
+    this.getServices();
+  });
   }
 
   getServices(): void {

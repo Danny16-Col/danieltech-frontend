@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 
 
@@ -20,8 +21,17 @@ export interface Product {
 export class ProductService {
 
   private  apiUrl = 'https://danieltech-backend.onrender.com/api/product';
+  private refresh = new Subject<void>();
 
   constructor(private http: HttpClient) {}
+
+  //refresh
+  get refreshProduct(){
+    return this.refresh
+  }
+  notifyRefresh() {
+  this.refresh.next();
+}
 
   // GET all products
   getProducts(): Observable<Product[]> {

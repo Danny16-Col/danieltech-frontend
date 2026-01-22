@@ -48,6 +48,7 @@ export class ProductForm {
       next: (createdProduct) => {
         this.loading = false;
         this.message = 'Producto creado correctamente';
+        this.productService.notifyRefresh();
         this.productForm.reset();
         setTimeout(() => {
           this.message = '';
