@@ -27,6 +27,10 @@
           <span>{{ item.category }}</span>
           <span>Stock: {{ item.stock }}</span>
         </div>
+        <button (click)="deleteServices(item._id!)">
+          Eliminar
+        </button>
+        
       </div>
     }
   </div>
